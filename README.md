@@ -39,4 +39,59 @@
 <h3>STEP 4:Implementing the AI agent:</h3>
 <p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
 <h3>STEP 5:</h3>
+
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+
+## PROGRAM
+
+```
+class HealthMonitoringAgent:
+    def __init__(self, patient_data):
+        self.patient_data = patient_data
+
+    def monitor_health(self):
+        states = [
+            {'heart_rate': 130, 'blood_pressure': 120, 'temperature': 37.0},
+            {'heart_rate': 90, 'blood_pressure': 150, 'temperature': 37.0},
+            {'heart_rate': 90, 'blood_pressure': 120, 'temperature': 38.5},
+            {'heart_rate': 90, 'blood_pressure': 120, 'temperature': 37.0}
+        ]
+
+        for state in states:
+            action = self.choose_action(state)
+            self.actuators.perform_action(action)
+
+    def choose_action(self, state):
+        if state['heart_rate'] > 120:
+            return "Alert healthcare provider: High heart rate detected"
+        elif state['blood_pressure'] > 140:
+            return "Alert healthcare provider: High blood pressure detected"
+        elif state['temperature'] > 38:
+            return "Recommend rest and monitor temperature"
+        else:
+            return "No specific action needed"
+
+
+class HealthSensors:
+    pass
+
+
+class HealthActuators:
+    def perform_action(self, action):
+        print(action)
+
+
+if __name__ == "__main__":
+    patient_data = {'patient_id': 123, 'name': 'John Doe', 'age': 35}
+
+    health_monitoring_agent = HealthMonitoringAgent(patient_data)
+    health_monitoring_agent.actuators = HealthActuators()
+    health_monitoring_agent.monitor_health()
+```
+
+## OUTPUT
+
+<img width="1042" height="440" alt="Screenshot 2026-10-28 100421" src="https://github.com/user-attachments/assets/f5576d34-6fa7-43a1-8035-e5fb646ece60" />
+
+## RESULT 
+Thus,developed AI agent with PEAS.
